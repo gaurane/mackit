@@ -27,9 +27,44 @@ That's it. Every script is now a short command you can run from any directory.
 
 ---
 
+## 🚀 Run them all, or one at a time
+
+### Everything at once
+
+After `install.sh`, chain the aliases in whatever order you like:
+
+```bash
+# Weekly full routine
+health && sstidy && nuke && cleanup && devup && gsweep
+
+# Quick morning check
+health && sstidy && gsweep
+```
+
+Or without the aliases, straight from the folder:
+
+```bash
+cd ~/Documents/mackit
+./mac-health.sh && ./screenshot-tidy.sh && ./node-nuke.sh && ./mac-cleanup.sh && ./dev-update.sh && ./git-sweep.sh
+```
+
+> `nuke` and `cleanup` still pause and ask before deleting, so a chained run is safe to walk away from — it just waits for your `y`.
+
+### One at a time
+
+```bash
+health                 # or  ~/Documents/mackit/mac-health.sh
+ports kill 3000        # or  ~/Documents/mackit/ports.sh kill 3000
+cleanup --deep         # or  ~/Documents/mackit/mac-cleanup.sh --deep
+```
+
+Every script works on its own — none of them depend on the others.
+
+---
+
 ## 🧰 The scripts
 
-| Command | Script | What it does | Run it… |
+| Alias | Script | What it does | Run it… |
 |:--|:--|:--|:--|
 | 🩺 `health` | `mac-health.sh` | One-screen status: disk, RAM, battery cycles, last backup, Wi-Fi, top CPU & memory hogs | Daily |
 | 🔌 `ports` | `ports.sh` | See what's listening on which port, and free one with `ports kill 3000` | Daily |
